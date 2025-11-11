@@ -1,0 +1,10 @@
+# Telegram Bot Dependencies
+# Python 3.8+ required
+
+# Main telegram bot library (v21+)
+python-telegram-bot==21.0.1
+
+# Additional dependencies (installed automatically with python-telegram-bot)
+# httpx - HTTP client for async requests
+# anyio - Async compatibility layer
+

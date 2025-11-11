@@ -1,0 +1,85 @@
+{
+  "bot_token": "YOUR_BOT_TOKEN_HERE",
+  "admin_ids": [],
+  "welcome_message": "👋 Welcome! Please choose an option below.",
+  "menus": {
+    "main": {
+      "title": "Main Menu",
+      "buttons": [
+        ["💎 Enquiry 💎"],
+        ["📞 Contact Team 📞"],
+        ["🟢 Other 🟢"],
+        ["❓ FAQs ❓"]
+      ]
+    },
+    "enquiry": {
+      "title": "💎 Enquiry Menu 💎",
+      "buttons": [
+        ["Button inside enquiry 1"],
+        ["Button inside enquiry 2"],
+        ["⬅ Back", "🔝 Main Menu"]
+      ]
+    },
+    "contact": {
+      "title": "📞 Contact Team 📞",
+      "buttons": [
+        ["Email Support"],
+        ["Phone Support"],
+        ["Live Chat"],
+        ["⬅ Back", "🔝 Main Menu"]
+      ]
+    },
+    "other": {
+      "title": "🟢 Other Options 🟢",
+      "buttons": [
+        ["Option 1"],
+        ["Option 2"],
+        ["⬅ Back", "🔝 Main Menu"]
+      ]
+    },
+    "faqs": {
+      "title": "❓ FAQs ❓",
+      "buttons": [
+        ["How to order?"],
+        ["Payment methods"],
+        ["Shipping info"],
+        ["⬅ Back", "🔝 Main Menu"]
+      ]
+    },
+    "admin": {
+      "title": "⚙️ Admin Settings ⚙️",
+      "buttons": [
+        ["📝 Edit Welcome Message"],
+        ["🔧 Edit Menu"],
+        ["💬 Edit Response"],
+        ["➕ Add Menu"],
+        ["🗑️ Delete Menu"],
+        ["👥 Manage Admins"],
+        ["🔄 Reload Config"],
+        ["⬅ Back", "🔝 Main Menu"]
+      ]
+    }
+  },
+  "button_mapping": {
+    "💎 Enquiry 💎": "enquiry",
+    "📞 Contact Team 📞": "contact",
+    "🟢 Other 🟢": "other",
+    "❓ FAQs ❓": "faqs",
+    "⚙️ Settings": "admin",
+    "⬅ Back": "back",
+    "🔝 Main Menu": "main"
+  },
+  "responses": {
+    "Button inside enquiry 1": "You have selected the button enquiry 1",
+    "Button inside enquiry 2": "You have selected the button enquiry 2",
+    "Email Support": "📧 Email us at: support@example.com",
+    "Phone Support": "📱 Call us at: +1-234-567-8900",
+    "Live Chat": "💬 Live chat is available on our website!",
+    "Option 1": "You selected Option 1",
+    "Option 2": "You selected Option 2",
+    "How to order?": "To order, simply browse our menu and select your items!",
+    "Payment methods": "We accept credit cards, PayPal, and cash on delivery.",
+    "Shipping info": "We deliver within 3-5 business days."
+  }
+}
+
