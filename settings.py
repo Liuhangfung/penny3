@@ -93,7 +93,6 @@ class Config:
     def update_welcome_message(self, message: str) -> bool:
         """Update welcome message"""
         self.config['welcome_message'] = message
-        self.welcome_message = message  # Update the property too
         if self.save_config():
             logger.info(f"Welcome message updated: {message[:50]}...")
             return True
@@ -118,7 +117,6 @@ class Config:
         if 'responses' not in self.config:
             self.config['responses'] = {}
         self.config['responses'][button_text] = response
-        self.responses[button_text] = response  # Update the property too
         if self.save_config():
             logger.info(f"Response updated for button: {button_text}")
             return True
