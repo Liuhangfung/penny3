@@ -118,6 +118,41 @@ class Config:
             del self.config['responses'][button_text]
             return self.save_config()
         return False
+    
+    def add_menu(self, menu_name: str, menu_title: str) -> bool:
+        """Add a new menu"""
+        if menu_name in self.config['menus']:
+            return False  # Menu already exists
+        
+        # Create new menu with basic structure
+        self.config['menus'][menu_name] = {
+            "title": menu_title,
+            "buttons": [
+                ["⬅ Back", "🔝 Main Menu"]
+            ]
+        }
+        return self.save_config()
+    
+    def delete_menu(self, menu_name: str) -> bool:
+        """Delete a menu"""
+        # Don't allow deleting essential menus
+        if menu_name in ['main', 'admin']:
+            return False
+        
+        if menu_name in self.config['menus']:
+            del self.config['menus'][menu_name]
+            
+            # Clean up button mappings that point to this menu
+            mappings_to_remove = []
+            for button, target in self.config.get('button_mapping', {}).items():
+                if target == menu_name:
+                    mappings_to_remove.append(button)
+            
+            for button in mappings_to_remove:
+                del self.config['button_mapping'][button]
+            
+            return self.save_config()
+        return False
 
 
 # Global configuration instance

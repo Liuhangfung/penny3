@@ -1,10 +1,10 @@
 {
-  "bot_token": "8361445434:AAGILPvr7QLyxDrPkyOG63czptbAGMUhIt0",
+  "bot_token": "8427965235:AAEvSR0_UDTIGGaftehgix8uMp-JNWGHC74",
   "admin_ids": [
     1051226560,
     6193869363
   ],
-  "welcome_message": "👋 Welcome! Please choose an option below.",
+  "welcome_message": "I'm your <b>intelligent assistant</b>, here to help you navigate our services.\n\n🎯 <b>Quick Access:</b> Use the menu below\n✨ <b>24/7 Support:</b> I'm always here\n🚀 <b>Fast Response:</b> Instant replies",
   "menus": {
     "main": {
       "title": "Main Menu",
@@ -17,6 +17,12 @@
         ],
         [
           "🟢 Other 🟢"
+        ],
+        [
+          "utgl linkedin"
+        ],
+        [
+          "🛠 Service"
         ],
         [
           "❓ FAQs ❓"
@@ -118,6 +124,15 @@
           "🔝 Main Menu"
         ]
       ]
+    },
+    "service": {
+      "title": "🛠 Our Services",
+      "buttons": [
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
     }
   },
   "button_mapping": {
@@ -127,7 +142,8 @@
     "❓ FAQs ❓": "faqs",
     "⚙️ Settings": "admin",
     "⬅ Back": "back",
-    "🔝 Main Menu": "main"
+    "🔝 Main Menu": "main",
+    "🛠 Service": "service"
   },
   "responses": {
     "Button inside enquiry 2": "You have selected the button enquiry 2",
@@ -139,7 +155,7 @@
     "How to order?": "To order, simply browse our menu and select your items!",
     "Payment methods": "We accept credit cards, PayPal, and cash on delivery.",
     "Shipping info": "We deliver within 3-5 business days.",
-    "🔧 Edit Menu": "⬅ Back",
+    "🔧 Edit Menu": "🔧 Edit Menu",
     "utlg info": "welcome to utgl"
   }
 }

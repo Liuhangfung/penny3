@@ -219,9 +219,17 @@ class MenuHandler:
         # Clear navigation history
         self.clear_history(user_id)
         
-        # Send welcome message with user ID (helpful for admin setup)
-        welcome_text = self.config.welcome_message
-        welcome_text += f"\n\n<i>Your User ID: <code>{user_id}</code></i>"
+        # Send fancy welcome message
+        welcome_text = (
+            "╔═══════════════════════════════╗\n"
+            "║      🌟 <b>WELCOME!</b> 🌟            ║\n"
+            "╚═══════════════════════════════╝\n\n"
+            f"👋 Hello <b>{user_name}</b>!\n\n"
+            f"{self.config.welcome_message}\n\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            f"<i>👤 User ID: <code>{user_id}</code></i>\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        )
         await update.message.reply_html(welcome_text)
         
         # Show main menu
@@ -240,15 +248,23 @@ class MenuHandler:
             context: Telegram context object
         """
         help_text = (
-            "🤖 <b>Bot Help</b>\n\n"
-            "Commands:\n"
-            "/start - Start the bot and show main menu\n"
-            "/help - Show this help message\n"
-            "/menu - Return to main menu\n\n"
-            "Navigation:\n"
-            "• Use the buttons to navigate through menus\n"
-            "• Press '⬅ Back' to go to the previous menu\n"
-            "• Press '🔝 Main Menu' to return to the main menu\n"
+            "╔═══════════════════════════════╗\n"
+            "║       🤖 <b>BOT HELP</b> 🤖          ║\n"
+            "╚═══════════════════════════════╝\n\n"
+            "📋 <b>COMMANDS</b>\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            "• /start - Start the bot\n"
+            "• /help - Show this message\n"
+            "• /menu - Return to main menu\n\n"
+            "🧭 <b>NAVIGATION</b>\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            "• Tap buttons to navigate\n"
+            "• <b>⬅ Back</b> - Previous menu\n"
+            "• <b>🔝 Main Menu</b> - Home\n\n"
+            "💡 <b>TIP</b>\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            "Use the keyboard buttons below\n"
+            "for easy navigation!"
         )
         
         await update.message.reply_html(help_text)

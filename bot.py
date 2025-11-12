@@ -24,7 +24,13 @@ from admin_handler import (
     WAITING_MENU_ACTION,
     WAITING_NEW_TITLE,
     WAITING_BUTTON_SELECT,
-    WAITING_NEW_BUTTON_TEXT
+    WAITING_NEW_BUTTON_TEXT,
+    WAITING_NEW_MENU_NAME,
+    WAITING_NEW_MENU_TITLE,
+    WAITING_DELETE_MENU_CONFIRM,
+    WAITING_NEW_BUTTON_NAME,
+    WAITING_ADD_TO_MAIN,
+    WAITING_MAIN_BUTTON_TEXT
 )
 
 # Configure logging
@@ -174,12 +180,56 @@ def main() -> None:
                 WAITING_NEW_BUTTON_TEXT: [
                     MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_new_button_text)
                 ],
+                WAITING_NEW_BUTTON_NAME: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_new_button_name)
+                ],
             },
             fallbacks=[CommandHandler("cancel", admin_handler.cancel_conversation)],
             per_user=True,
             per_chat=True
         )
         application.add_handler(edit_menu_conv)
+        
+        # Add Menu conversation
+        add_menu_conv = ConversationHandler(
+            entry_points=[
+                MessageHandler(filters.Regex("^➕ Add Menu$"), admin_handler.start_add_menu)
+            ],
+            states={
+                WAITING_NEW_MENU_NAME: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_new_menu_name)
+                ],
+                WAITING_NEW_MENU_TITLE: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_new_menu_title)
+                ],
+                WAITING_ADD_TO_MAIN: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_add_to_main_choice)
+                ],
+                WAITING_MAIN_BUTTON_TEXT: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_main_button_text)
+                ],
+            },
+            fallbacks=[CommandHandler("cancel", admin_handler.cancel_conversation)],
+            per_user=True,
+            per_chat=True
+        )
+        application.add_handler(add_menu_conv)
+        
+        # Delete Menu conversation
+        delete_menu_conv = ConversationHandler(
+            entry_points=[
+                MessageHandler(filters.Regex("^🗑️ Delete Menu$"), admin_handler.start_delete_menu)
+            ],
+            states={
+                WAITING_DELETE_MENU_CONFIRM: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_delete_menu_confirm)
+                ],
+            },
+            fallbacks=[CommandHandler("cancel", admin_handler.cancel_conversation)],
+            per_user=True,
+            per_chat=True
+        )
+        application.add_handler(delete_menu_conv)
         
         # Register message handler for button presses (text messages)
         application.add_handler(
