@@ -4,7 +4,10 @@ Loads configuration from menu_config.json
 """
 import json
 import os
+import logging
 from typing import Dict, Any
+
+logger = logging.getLogger(__name__)
 
 
 class Config:
@@ -81,15 +84,20 @@ class Config:
         try:
             with open(self.config_file, 'w', encoding='utf-8') as f:
                 json.dump(self.config, f, indent=2, ensure_ascii=False)
+            logger.info("Configuration saved successfully")
             return True
         except Exception as e:
-            print(f"Error saving config: {e}")
+            logger.error(f"Error saving config: {e}")
             return False
     
     def update_welcome_message(self, message: str) -> bool:
         """Update welcome message"""
         self.config['welcome_message'] = message
-        return self.save_config()
+        self.welcome_message = message  # Update the property too
+        if self.save_config():
+            logger.info(f"Welcome message updated: {message[:50]}...")
+            return True
+        return False
     
     def add_admin(self, user_id: int) -> bool:
         """Add admin user ID"""
@@ -110,7 +118,11 @@ class Config:
         if 'responses' not in self.config:
             self.config['responses'] = {}
         self.config['responses'][button_text] = response
-        return self.save_config()
+        self.responses[button_text] = response  # Update the property too
+        if self.save_config():
+            logger.info(f"Response updated for button: {button_text}")
+            return True
+        return False
     
     def delete_response(self, button_text: str) -> bool:
         """Delete a button response"""
