@@ -3,11 +3,12 @@ Main Telegram Bot Entry Point
 Initializes and runs the bot with polling
 """
 import logging
-from telegram import Update
+from telegram import Update, BotCommand, MenuButtonCommands
 from telegram.ext import (
     Application,
     CommandHandler,
     MessageHandler,
+    CallbackQueryHandler,
     ConversationHandler,
     filters,
     ContextTypes
@@ -30,7 +31,9 @@ from admin_handler import (
     WAITING_DELETE_MENU_CONFIRM,
     WAITING_NEW_BUTTON_NAME,
     WAITING_ADD_TO_MAIN,
-    WAITING_MAIN_BUTTON_TEXT
+    WAITING_MAIN_BUTTON_TEXT,
+    WAITING_MAPPING_BUTTON,
+    WAITING_MAPPING_TARGET
 )
 
 # Configure logging
@@ -61,10 +64,26 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 async def post_init(application: Application) -> None:
     """
     Called after the bot is initialized
+    Sets up bot commands and menu button
     """
     bot_info = await application.bot.get_me()
     logger.info(f"Bot started: @{bot_info.username}")
     logger.info(f"Bot ID: {bot_info.id}")
+    
+    # Set up bot commands (appears in the Menu button)
+    commands = [
+        BotCommand("start", "🏠 Start the bot and see welcome message"),
+        BotCommand("help", "❓ Get help and instructions"),
+        BotCommand("menu", "📋 Show main menu")
+    ]
+    
+    await application.bot.set_my_commands(commands)
+    logger.info(f"Set up {len(commands)} bot commands")
+    
+    # Enable the menu button (blue button in bottom-left)
+    await application.bot.set_chat_menu_button(menu_button=MenuButtonCommands())
+    logger.info("Menu button enabled")
+    
     logger.info("Bot is ready to receive messages!")
 
 
@@ -95,7 +114,8 @@ def main() -> None:
         # Edit Welcome Message conversation
         welcome_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^📝 Edit Welcome Message$"), admin_handler.start_edit_welcome)
+                MessageHandler(filters.Regex("^📝 Edit Welcome Message$"), admin_handler.start_edit_welcome),
+                CallbackQueryHandler(admin_handler.start_edit_welcome, pattern="^btn:📝 Edit Welcome Message$")
             ],
             states={
                 WAITING_WELCOME_MSG: [
@@ -111,7 +131,8 @@ def main() -> None:
         # Edit Response conversation
         response_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^💬 Edit Response$"), admin_handler.start_edit_response)
+                MessageHandler(filters.Regex("^💬 Edit Response$"), admin_handler.start_edit_response),
+                CallbackQueryHandler(admin_handler.start_edit_response, pattern="^btn:💬 Edit Response$")
             ],
             states={
                 WAITING_RESPONSE_BUTTON: [
@@ -130,7 +151,8 @@ def main() -> None:
         # Add Admin conversation
         add_admin_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^➕ Add Admin$"), admin_handler.start_add_admin)
+                MessageHandler(filters.Regex("^➕ Add Admin$"), admin_handler.start_add_admin),
+                CallbackQueryHandler(admin_handler.start_add_admin, pattern="^btn:➕ Add Admin$")
             ],
             states={
                 WAITING_ADMIN_ID: [
@@ -146,7 +168,8 @@ def main() -> None:
         # Remove Admin conversation
         remove_admin_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^➖ Remove Admin$"), admin_handler.start_remove_admin)
+                MessageHandler(filters.Regex("^➖ Remove Admin$"), admin_handler.start_remove_admin),
+                CallbackQueryHandler(admin_handler.start_remove_admin, pattern="^btn:➖ Remove Admin$")
             ],
             states={
                 WAITING_ADMIN_ID: [
@@ -162,7 +185,8 @@ def main() -> None:
         # Edit Menu conversation
         edit_menu_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^🔧 Edit Menu$"), admin_handler.start_edit_menu)
+                MessageHandler(filters.Regex("^🔧 Edit Menu$"), admin_handler.start_edit_menu),
+                CallbackQueryHandler(admin_handler.start_edit_menu, pattern="^btn:🔧 Edit Menu$")
             ],
             states={
                 WAITING_MENU_SELECT: [
@@ -193,7 +217,8 @@ def main() -> None:
         # Add Menu conversation
         add_menu_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^➕ Add Menu$"), admin_handler.start_add_menu)
+                MessageHandler(filters.Regex("^➕ Add Menu$"), admin_handler.start_add_menu),
+                CallbackQueryHandler(admin_handler.start_add_menu, pattern="^btn:➕ Add Menu$")
             ],
             states={
                 WAITING_NEW_MENU_NAME: [
@@ -218,7 +243,8 @@ def main() -> None:
         # Delete Menu conversation
         delete_menu_conv = ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Regex("^🗑️ Delete Menu$"), admin_handler.start_delete_menu)
+                MessageHandler(filters.Regex("^🗑️ Delete Menu$"), admin_handler.start_delete_menu),
+                CallbackQueryHandler(admin_handler.start_delete_menu, pattern="^btn:🗑️ Delete Menu$")
             ],
             states={
                 WAITING_DELETE_MENU_CONFIRM: [
@@ -231,7 +257,33 @@ def main() -> None:
         )
         application.add_handler(delete_menu_conv)
         
+        # Edit Button Mapping conversation
+        button_mapping_conv = ConversationHandler(
+            entry_points=[
+                MessageHandler(filters.Regex("^🔗 Edit Button Mapping$"), admin_handler.start_edit_button_mapping),
+                CallbackQueryHandler(admin_handler.start_edit_button_mapping, pattern="^btn:🔗 Edit Button Mapping$")
+            ],
+            states={
+                WAITING_MAPPING_BUTTON: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_mapping_button)
+                ],
+                WAITING_MAPPING_TARGET: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, admin_handler.receive_mapping_target)
+                ],
+            },
+            fallbacks=[CommandHandler("cancel", admin_handler.cancel_conversation)],
+            per_user=True,
+            per_chat=True
+        )
+        application.add_handler(button_mapping_conv)
+        
+        # Register callback query handler for inline keyboard buttons
+        application.add_handler(
+            CallbackQueryHandler(menu_handler.handle_callback_query)
+        )
+        
         # Register message handler for button presses (text messages)
+        # This is kept for backward compatibility with conversation handlers
         application.add_handler(
             MessageHandler(
                 filters.TEXT & ~filters.COMMAND,

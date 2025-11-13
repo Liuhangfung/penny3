@@ -18,6 +18,7 @@ WAITING_BUTTON_SELECT, WAITING_NEW_BUTTON_TEXT = range(9, 11)
 WAITING_NEW_MENU_NAME, WAITING_NEW_MENU_TITLE, WAITING_DELETE_MENU_CONFIRM = range(11, 14)
 WAITING_NEW_BUTTON_NAME = 14
 WAITING_ADD_TO_MAIN, WAITING_MAIN_BUTTON_TEXT = range(15, 17)
+WAITING_MAPPING_BUTTON, WAITING_MAPPING_TARGET = range(17, 19)
 
 
 class AdminHandler:
@@ -40,19 +41,23 @@ class AdminHandler:
         
         user_id = update.effective_user.id
         
+        # Determine if this is from callback query or message
+        message = update.callback_query.message if update.callback_query else update.message
+        
         if not self.is_admin(user_id):
-            await update.message.reply_html(
-                "╔═══════════════════════════════╗\n"
-                "║     ⛔ <b>ACCESS DENIED</b> ⛔      ║\n"
-                "╚═══════════════════════════════╝\n\n"
-                "🚫 You are <b>not authorized</b> to\n"
-                "   access admin settings.\n\n"
-                "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-                f"👤 Your User ID: <code>{user_id}</code>\n"
-                "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-                "💡 Contact the bot owner to\n"
-                "   get admin access."
-            )
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+                await message.reply_html(
+                    "⛔ <b>Access Denied</b>\n\n"
+                    "🚫 You are not authorized to access admin settings.\n\n"
+                    "💡 Contact the bot owner to get admin access."
+                )
+            else:
+                await message.reply_html(
+                    "⛔ <b>Access Denied</b>\n\n"
+                    "🚫 You are not authorized to access admin settings.\n\n"
+                    "💡 Contact the bot owner to get admin access."
+                )
             return
         
         # Show fancy admin welcome
@@ -73,7 +78,11 @@ class AdminHandler:
             "your bot settings."
         )
         
-        await update.message.reply_html(admin_welcome)
+        # Answer callback query if it's from inline button
+        if update.callback_query:
+            await update.callback_query.answer()
+        
+        await message.reply_html(admin_welcome)
         
         # Show admin menu
         await menu_handler.show_menu(update, context, 'admin')
@@ -86,12 +95,21 @@ class AdminHandler:
         """Start editing welcome message"""
         user_id = update.effective_user.id
         
+        # Get message object from either callback_query or regular message
+        message = update.callback_query.message if update.callback_query else update.message
+        
         if not self.is_admin(user_id):
-            await update.message.reply_html("⛔ <b>Access Denied!</b>")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_html("⛔ <b>Access Denied!</b>")
             return ConversationHandler.END
         
+        # Answer callback query if from inline button
+        if update.callback_query:
+            await update.callback_query.answer()
+        
         current_msg = self.config.welcome_message
-        await update.message.reply_html(
+        await message.reply_html(
             "╔═══════════════════════════════╗\n"
             "║   📝 <b>EDIT WELCOME</b> 📝        ║\n"
             "╚═══════════════════════════════╝\n\n"
@@ -117,15 +135,21 @@ class AdminHandler:
     ) -> int:
         """Start editing button response"""
         user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_html("⛔ <b>Access Denied!</b>")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_html("⛔ <b>Access Denied!</b>")
             return ConversationHandler.END
+        
+        if update.callback_query:
+            await update.callback_query.answer()
         
         button_list = "\n".join([f"  • {k}" for k in self.config.responses.keys()])
         button_count = len(self.config.responses)
         
-        await update.message.reply_html(
+        await message.reply_html(
             "╔═══════════════════════════════╗\n"
             "║   💬 <b>EDIT RESPONSE</b> 💬       ║\n"
             "╚═══════════════════════════════╝\n\n"
@@ -147,15 +171,21 @@ class AdminHandler:
     ) -> int:
         """Start adding admin"""
         user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_html("⛔ <b>Access Denied!</b>")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_html("⛔ <b>Access Denied!</b>")
             return ConversationHandler.END
+        
+        if update.callback_query:
+            await update.callback_query.answer()
         
         admin_list = ', '.join(f"<code>{id}</code>" for id in self.config.admin_ids)
         admin_count = len(self.config.admin_ids)
         
-        await update.message.reply_html(
+        await message.reply_html(
             "╔═══════════════════════════════╗\n"
             "║     ➕ <b>ADD ADMIN</b> ➕          ║\n"
             "╚═══════════════════════════════╝\n\n"
@@ -181,13 +211,19 @@ class AdminHandler:
     ) -> int:
         """Start removing admin"""
         user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_html("⛔ <b>Access Denied!</b>")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_html("⛔ <b>Access Denied!</b>")
             return ConversationHandler.END
         
+        if update.callback_query:
+            await update.callback_query.answer()
+        
         if len(self.config.admin_ids) <= 1:
-            await update.message.reply_html(
+            await message.reply_html(
                 "╔═══════════════════════════════╗\n"
                 "║     ⚠️ <b>WARNING!</b> ⚠️          ║\n"
                 "╚═══════════════════════════════╝\n\n"
@@ -199,7 +235,7 @@ class AdminHandler:
         admin_list = "\n".join([f"  • <code>{aid}</code>" for aid in self.config.admin_ids])
         admin_count = len(self.config.admin_ids)
         
-        await update.message.reply_html(
+        await message.reply_html(
             "╔═══════════════════════════════╗\n"
             "║    ➖ <b>REMOVE ADMIN</b> ➖        ║\n"
             "╚═══════════════════════════════╝\n\n"
@@ -221,10 +257,20 @@ class AdminHandler:
     ) -> None:
         """Handle non-conversation admin actions"""
         user_id = update.effective_user.id
-        button_text = update.message.text
+        
+        # Get button text from either message or callback query
+        if update.callback_query:
+            button_text = update.callback_query.data.replace("btn:", "")
+            message = update.callback_query.message
+        else:
+            button_text = update.message.text
+            message = update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_text("⛔ Access Denied!")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            else:
+                await message.reply_text("⛔ Access Denied!")
             return
         
         # Handle different admin actions
@@ -239,7 +285,11 @@ class AdminHandler:
             ]
             reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
             
-            await update.message.reply_html(
+            # Answer callback query if from inline button
+            if update.callback_query:
+                await update.callback_query.answer()
+            
+            await message.reply_html(
                 "╔═══════════════════════════════╗\n"
                 "║   👥 <b>ADMIN MANAGER</b> 👥       ║\n"
                 "╚═══════════════════════════════╝\n\n"
@@ -254,12 +304,19 @@ class AdminHandler:
         
         elif button_text == "🔙 Back to Settings":
             from menu_handler import menu_handler
+            # Answer callback query if from inline button
+            if update.callback_query:
+                await update.callback_query.answer()
             await menu_handler.show_menu(update, context, 'admin', add_to_history=False)
         
         elif button_text == "🔄 Reload Config":
             try:
                 self.config.reload_config()
-                await update.message.reply_html(
+                # Answer callback query if from inline button
+                if update.callback_query:
+                    await update.callback_query.answer("✅ Config reloaded!", show_alert=True)
+                
+                await message.reply_html(
                     "╔═══════════════════════════════╗\n"
                     "║      ✅ <b>SUCCESS!</b> ✅          ║\n"
                     "╚═══════════════════════════════╝\n\n"
@@ -269,7 +326,10 @@ class AdminHandler:
                     "have been loaded."
                 )
             except Exception as e:
-                await update.message.reply_html(
+                if update.callback_query:
+                    await update.callback_query.answer("❌ Error reloading config", show_alert=True)
+                    
+                await message.reply_html(
                     "╔═══════════════════════════════╗\n"
                     "║       ❌ <b>ERROR!</b> ❌           ║\n"
                     "╚═══════════════════════════════╝\n\n"
@@ -464,15 +524,21 @@ class AdminHandler:
     ) -> int:
         """Start menu editing workflow"""
         user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_html("⛔ <b>Access Denied!</b>")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_html("⛔ <b>Access Denied!</b>")
             return ConversationHandler.END
+        
+        if update.callback_query:
+            await update.callback_query.answer()
         
         menu_list = "\n".join([f"  • <code>{k}</code>" for k in self.config.menus.keys()])
         menu_count = len(self.config.menus)
         
-        await update.message.reply_html(
+        await message.reply_html(
             "╔═══════════════════════════════╗\n"
             "║     🔧 <b>EDIT MENU</b> 🔧         ║\n"
             "╚═══════════════════════════════╝\n\n"
@@ -834,14 +900,20 @@ class AdminHandler:
     ) -> int:
         """Start adding a new menu"""
         user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_text("⛔ Access Denied!")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_text("⛔ Access Denied!")
             return ConversationHandler.END
+        
+        if update.callback_query:
+            await update.callback_query.answer()
         
         current_menus = ", ".join([f"<code>{m}</code>" for m in self.config.menus.keys()])
         
-        await update.message.reply_text(
+        await message.reply_text(
             "➕ <b>Create New Menu</b>\n\n"
             f"Current menus: {current_menus}\n\n"
             "Send me the menu <b>name</b> (lowercase, no spaces).\n"
@@ -932,16 +1004,22 @@ class AdminHandler:
     ) -> int:
         """Start deleting a menu"""
         user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
         
         if not self.is_admin(user_id):
-            await update.message.reply_text("⛔ Access Denied!")
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_text("⛔ Access Denied!")
             return ConversationHandler.END
+        
+        if update.callback_query:
+            await update.callback_query.answer()
         
         # Get deletable menus (not main or admin)
         deletable_menus = [m for m in self.config.menus.keys() if m not in ['main', 'admin']]
         
         if not deletable_menus:
-            await update.message.reply_text(
+            await message.reply_text(
                 "❌ No menus available to delete!\n\n"
                 "You cannot delete 'main' or 'admin' menus."
             )
@@ -949,7 +1027,7 @@ class AdminHandler:
         
         menu_list = "\n".join([f"• <code>{m}</code>" for m in deletable_menus])
         
-        await update.message.reply_text(
+        await message.reply_text(
             "🗑️ <b>Delete Menu</b>\n\n"
             f"Available menus:\n{menu_list}\n\n"
             "⚠️ <b>Warning:</b> This will permanently delete the menu!\n\n"
@@ -1125,6 +1203,127 @@ class AdminHandler:
         await menu_handler.show_menu(update, context, 'admin', add_to_history=False)
         return ConversationHandler.END
     
+    async def start_edit_button_mapping(
+        self,
+        update: Update,
+        context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
+        """Start editing button mappings"""
+        user_id = update.effective_user.id
+        message = update.callback_query.message if update.callback_query else update.message
+        
+        if not self.is_admin(user_id):
+            if update.callback_query:
+                await update.callback_query.answer("⛔ Access Denied", show_alert=True)
+            await message.reply_html("⛔ <b>Access Denied!</b>")
+            return ConversationHandler.END
+        
+        if update.callback_query:
+            await update.callback_query.answer()
+        
+        # Get all button mappings
+        mappings = self.config.button_mapping
+        mapping_count = len(mappings)
+        
+        # Format mappings list
+        mapping_list = ""
+        for idx, (button_text, target) in enumerate(mappings.items(), 1):
+            mapping_list += f"{idx}. <code>{button_text}</code> → <code>{target}</code>\n"
+        
+        await message.reply_html(
+            "╔═══════════════════════════════╗\n"
+            "║  🔗 <b>EDIT BUTTON MAPPING</b> 🔗  ║\n"
+            "╚═══════════════════════════════╝\n\n"
+            f"📊 <b>CURRENT MAPPINGS ({mapping_count}):</b>\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            f"{mapping_list}\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+            "✏️ Send the <b>button text</b> you want to remap\n"
+            "   (exact text from list above)\n\n"
+            "💡 <b>TIP:</b> Button mappings link button text\n"
+            "   to a menu name or action (main, back, admin)\n\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            "Type /cancel to abort"
+        )
+        return WAITING_MAPPING_BUTTON
+    
+    async def receive_mapping_button(
+        self,
+        update: Update,
+        context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
+        """Receive which button mapping to edit"""
+        button_text = update.message.text.strip()
+        
+        mappings = self.config.button_mapping
+        
+        if button_text not in mappings:
+            await update.message.reply_html(
+                f"❌ Button '<code>{button_text}</code>' not found in mappings.\n\n"
+                "Please send exact button text or /cancel to abort."
+            )
+            return WAITING_MAPPING_BUTTON
+        
+        # Store button being edited
+        context.user_data['mapping_button'] = button_text
+        current_target = mappings[button_text]
+        
+        # Get available menus
+        menu_list = "\n".join([f"  • <code>{k}</code>" for k in self.config.menus.keys()])
+        
+        await update.message.reply_html(
+            f"🔗 <b>Editing Mapping for:</b>\n"
+            f"<code>{button_text}</code>\n\n"
+            f"📍 <b>Current Target:</b> <code>{current_target}</code>\n\n"
+            f"📋 <b>Available Menus:</b>\n"
+            f"{menu_list}\n\n"
+            f"✨ <b>Special Actions:</b>\n"
+            f"  • <code>main</code> - Main menu\n"
+            f"  • <code>back</code> - Previous menu\n"
+            f"  • <code>admin</code> - Admin panel\n\n"
+            f"✏️ Send the new target (menu name or action)\n"
+            f"   Example: <code>trust_plans</code>\n\n"
+            f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            f"Type /cancel to abort"
+        )
+        return WAITING_MAPPING_TARGET
+    
+    async def receive_mapping_target(
+        self,
+        update: Update,
+        context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
+        """Receive new target for button mapping"""
+        from menu_handler import menu_handler
+        
+        new_target = update.message.text.strip()
+        button_text = context.user_data.get('mapping_button')
+        
+        if not button_text:
+            await update.message.reply_text("❌ Error: No button selected")
+            return ConversationHandler.END
+        
+        # Update button mapping
+        self.config.config['button_mapping'][button_text] = new_target
+        
+        if self.config.save_config():
+            await update.message.reply_html(
+                "╔═══════════════════════════════╗\n"
+                "║    ✅ <b>SUCCESS!</b> ✅           ║\n"
+                "╚═══════════════════════════════╝\n\n"
+                f"🔗 <b>Button Mapping Updated</b>\n\n"
+                f"📝 Button: <code>{button_text}</code>\n"
+                f"🎯 New Target: <code>{new_target}</code>\n\n"
+                f"✨ Changes saved successfully!"
+            )
+        else:
+            await update.message.reply_text("❌ Failed to save configuration.")
+        
+        # Cleanup
+        context.user_data.pop('mapping_button', None)
+        await menu_handler.show_menu(update, context, 'admin', add_to_history=False)
+        return ConversationHandler.END
+    
     async def cancel_conversation(
         self,
         update: Update,
@@ -1152,6 +1351,7 @@ class AdminHandler:
         context.user_data.pop('button_col', None)
         context.user_data.pop('new_menu_name', None)
         context.user_data.pop('removing_button', None)
+        context.user_data.pop('mapping_button', None)
         
         return ConversationHandler.END
 

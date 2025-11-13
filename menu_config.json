@@ -1,42 +1,42 @@
 {
-  "bot_token": "8427965235:AAEvSR0_UDTIGGaftehgix8uMp-JNWGHC74",
+  "bot_token": "8361445434:AAGILPvr7QLyxDrPkyOG63czptbAGMUhIt0",
   "admin_ids": [
     1051226560,
     6193869363
   ],
-  "welcome_message": "I'm your <b>intelligent assistant</b>, here to help you navigate our services.\n\n🎯 <b>Quick Access:</b> Use the menu below\n✨ <b>24/7 Support:</b> I'm always here\n🚀 <b>Fast Response:</b> Instant replies",
+  "welcome_message": "Hi there! 👋 Welcome to UTGL - World's Leading Global Private Trust Specialist.\n\nThanks for reaching out! We're here to help you discover how UTGL can secure and grow your wealth with complete privacy and flexibility. 🌍✨\n\n<b>How can we assist you today?</b>",
   "menus": {
     "main": {
       "title": "Main Menu",
       "buttons": [
         [
-          "💎 Enquiry 💎"
+          "What is UTGL?"
         ],
         [
-          "📞 Contact Team 📞"
+          "Trust Plans & Benefits"
         ],
         [
-          "🟢 Other 🟢"
+          "How to Apply"
         ],
         [
-          "utgl linkedin"
+          "Collaboration Opportunities"
         ],
         [
-          "🛠 Service"
-        ],
-        [
-          "❓ FAQs ❓"
+          "Other Enquiries"
         ]
       ]
     },
-    "enquiry": {
-      "title": " Enquiry Menu",
+    "what_is_utgl": {
+      "title": "UTGL is a <b>publicly licensed trust company in Hong Kong</b>, operating under a <b>government-bonded framework</b> to deliver secure and private trust services. We are the <b>No. 1 pioneer in digital trust solutions</b>, combining traditional wealth protection with the power of AI and blockchain technology.\n\n🤝 <b>Strategic Partners include:</b>\n• BlackRock & JP Morgan\n• Visa & Mastercard\n• Fireblocks & Chainalysis\n\n💼 <b>Our Core Services:</b>\n\n✅ <b>Private Trust Services</b> – safeguarding assets, ensuring succession, and enabling global financial flexibility\n\n🌟 <b>Why Choose UTGL</b>\n\n• <b>Tax Efficiency:</b> Hong Kong has no capital gains tax\n• <b>Global Access:</b> Trade and invest 24/7 through our digital trust platform\n• <b>Seamless Experience:</b> Remote onboarding – no in-person visits required\n• <b>Tailored Solutions:</b> Our progressive trust framework evolves with your life and wealth goals\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n<b>Would you like to know more about:</b>",
       "buttons": [
         [
-          "utlg info"
+          "Our Trust Plans & Fees"
         ],
         [
-          "Button inside enquiry 2"
+          "How to Apply"
+        ],
+        [
+          "Speak to Our Team"
         ],
         [
           "⬅ Back",
@@ -44,17 +44,14 @@
         ]
       ]
     },
-    "contact": {
-      "title": "📞 Contact Team 📞",
+    "trust_plans": {
+      "title": "We offer <b>4 flexible trust plans</b> to suit your needs!\n\n<b>1️⃣ LITE PLAN</b>\nFor users who deal exclusively with digital assets\n<i>No application fee, no monthly fee</i>\nJust inject minimum 100 USD worth of digital assets\n\n<b>Features and benefits:</b>\n• 1 virtual Asset Link Credit Card\n• Digital asset custody\n⚠️ Monthly spending limit: 1,000 USD\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n<b>2️⃣ STANDARD PLAN</b>\nBasic trust protection and management\n<b>Application Fee:</b> $0* with 10,000 USD injection\n<i>(or 120 USD application fee)</i>\n\n<b>Features and benefits:</b>\n• 1 physical Platinum Asset Link Credit Card\n• 1.5% cashback on cross-border transactions\n• Max. 3 credit cards per account\n• Trust management with max. 2 beneficiaries\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n<b>3️⃣ PREMIUM PLAN</b> 🔥 <i>POPULAR</i>\nComprehensive financial solutions & investment opportunities\n<b>Application Fee:</b> $0* with 30,000 USD injection\n<i>(or 360 USD application fee)</i>\n\n<b>Features and benefits:</b>\n• 1 physical World Asset Link Credit Card\n• 2.5% cashback on cross-border transactions\n• Max. 5 credit cards per account\n• Global invoice payment + Private investment account\n• Bank injection/payout + Remittance + NFT custody\n• Trust management with max. 3 beneficiaries\n• Dedicated Relationship manager\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n<b>4️⃣ SUPREME PLAN</b>\nUltimate wealth and unmatched asset protection\n<b>Application Fee:</b> $0* with 500,000 USD injection\n<i>(or 15,000 USD application fee)</i>\n\n<b>Features and benefits:</b>\n• 1 physical World Elite Metal Asset Link Credit Card\n• Up to 5% cashback on cross-border transactions\n• Eligible for world's first World Elite Ceramic Card\n• Max. 10 credit cards per account\n• Complementary SPV setup\n• Trust management with Unlimited beneficiaries\n• Dedicated Relationship manager\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n<b>✅ ADDITIONAL BENEFITS:</b>\n• No capital gains tax in Hong Kong\n• No account opening fees\n• No personal visit required\n• 24/7 access to global markets\n• Tax-free growth on investments\n\nFor detailed pricing: https://www.utgl.net/plans/pricing\n\n<b>Would you like to know more about:</b>",
       "buttons": [
         [
-          "Email Support"
+          "How to Apply"
         ],
         [
-          "Phone Support"
-        ],
-        [
-          "Live Chat"
+          "Speak to Our Team"
         ],
         [
           "⬅ Back",
@@ -62,14 +59,11 @@
         ]
       ]
     },
-    "other": {
-      "title": "🟢 Other Options 🟢",
+    "how_to_apply": {
+      "title": "Getting started with UTGL is easy! What you'll need:\n\n<b>📄 For Individuals:</b>\n\n• Valid ID or passport\n• Proof of address (bank statement or utility bill)\n• Selfie with your ID\n\n<b>🏢 For Corporate Clients:</b>\n\n• Certificate of Incorporation\n• Beneficial owner information\n• Director/shareholder details\n• Business proof of address\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n<b>⏱️ Application Timeline:</b>\n\n• Application review: <b>2-3 business days</b>\n• Card delivery: <b>5-7 working days</b> after approval\n• Total process: <b>~10 working days</b>\n\n━━━━━━━━━━━━━━━━━━━━━━",
       "buttons": [
         [
-          "Option 1"
-        ],
-        [
-          "Option 2"
+          "Speak to Our Team"
         ],
         [
           "⬅ Back",
@@ -77,18 +71,119 @@
         ]
       ]
     },
-    "faqs": {
-      "title": "❓ FAQs ❓",
+    "collaboration": {
+      "title": "Thank you for reaching out about collaboration opportunities with UTGL! 🤝💡\n\nWe believe in the power of strategic partnerships and are open to various collaboration models that create mutual value.",
       "buttons": [
         [
-          "How to order?"
+          "Co-Branded Cards"
         ],
         [
-          "Payment methods"
+          "Technology Integration (API Solutions)"
         ],
         [
-          "Shipping info"
+          "Joint Ventures"
         ],
+        [
+          "Content Partnerships"
+        ],
+        [
+          "Trust Company White Label"
+        ],
+        [
+          "Custom Solutions"
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "other_enquiries": {
+      "title": "We'd love to help you personally! 👥💬\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n💬 <b>CONNECT WITH OUR CONSULTANT:</b>\nClick here to chat with our team: @utglmarketing\n\nOur consultant will assist you with:\n✅ Personalized plan recommendations\n✅ Application guidance\n✅ Account setup support\n✅ Partnership opportunities\n✅ Any questions you may have\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n💌 <b>ALTERNATIVELY, EMAIL US:</b>\nsupport@utgl.io\n<i>(We typically respond within 24 hours)</i>\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n📚 <b>HELP CENTER:</b>\nFor instant answers, visit: https://help.utgl.io/en/",
+      "buttons": [
+        [
+          "Leave Your Contact"
+        ],
+        [
+          "⬅ Back to Main Menu"
+        ]
+      ]
+    },
+    "cobranded_cards": {
+      "title": "<b>Launch Your Own Branded Credit Card with UTGL</b>\n\n<i>Your Brand, Our Expertise.</i> Unlock new revenue streams and enhance customer loyalty with UTGL's co-branded card program. 💳\n\nWe empower your business to offer a unique financial product that extends your brand, delights your customers, and generates substantial revenue.\n\n<b>Key Benefits:</b>\n\n✅ <b>Multiple Revenue Streams:</b>\nEarn from application fees, interchange fees, overseas spending, ATM usage, and more. Create a new financial vertical for your business with minimal upfront investment.\n\n✅ <b>Customized Premium Cards:</b>\nShowcase your unique identity with premium materials like metal, ceramic, or palladium. We can also incorporate innovative tech like embedded LEDs or biometric sensors.\n\n✅ <b>Full Digital Experience:</b>\nOffer a fully customized digital experience with your own branded web portal and mobile app, featuring instant digital card issuance and real-time analytics.\n\n✅ <b>Dedicated Support:</b>\nWork with a dedicated Card Project Manager from concept to launch. We provide strategic planning, market intelligence, and collaborative marketing to ensure your program's success.\n\n<b>This is perfect for:</b>\n• Fintech startups\n• Established consumer brands\n• E-commerce platforms\n• Membership clubs and associations\n\n<b>Ready to build a financial ecosystem that works for you and your customers?</b>",
+      "buttons": [
+        [
+          "Leave Your Contact"
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "api_solutions": {
+      "title": "<b>Technology Integration (API Solutions)</b>\n\nIntegrate with UTGL's Advanced FinTech Trust Platform\n\nLeverage our powerful, secure, and scalable infrastructure to enhance your own services.\n\nOur FinTech trust platform streamlines administration and oversight, and with our API solutions, you and your clients can automate their trust and get instant, real-time updates. No more waiting for manual updates or relying on batch processing.\n\n<b>Key Benefits:</b>\n\n✅ <b>Seamless API Integration:</b> Our easy-to-use APIs allow for quick launch and scalability, enabling you to integrate our trust and banking services directly into your platform.\n\n✅ <b>Real-Time Access:</b> Provide your clients with real-time access to their account information, transaction history, and investment portfolios under your own brand.\n\n✅ <b>Value-Add Functions:</b> Offer your clients additional services such as trust, including:\n  • Offshore bank accounts\n  • Global invoice payments\n  • Currency exchange\n  • Exclusive investment offerings\n\n✅ <b>White-Label Solutions:</b> Use our technology to power your own branded trust services. We provide the regulatory framework, infrastructure, and expertise, allowing you to focus on serving your clients.\n\n<b>This is perfect for:</b>\n• Financial institutions\n• Wealth management firms\n• Digital asset exchanges\n• Platforms looking to add financial services",
+      "buttons": [
+        [
+          "Leave Your Contact"
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "joint_ventures": {
+      "title": "<b>Joint Ventures</b>\n\nExplore New Markets Together with UTGL\n\nLet's combine our strengths to capture new opportunities and expand our global reach. 🌍\n\nUTGL is seeking strategic partners for joint ventures to enter new markets and develop innovative financial products. By partnering with us, you gain access to our robust financial infrastructure, licensing, and expertise in the trust and wealth management sector.\n\n<b>Key Benefits:</b>\n\n✅ <b>Strategic Base in Hong Kong:</b>\nLeverage our position in one of the world's leading financial centers as a gateway to high-growth markets across the Asia-Pacific region.\n\n✅ <b>Robust Infrastructure:</b>\nUtilize our secure and politically stable financial infrastructure, with stringent regulations and reliable capital flows.\n\n✅ <b>Shared Expertise:</b>\nCombine your market knowledge and customer base with our expertise in trust services, digital assets, and global finance to create powerful synergies.\n\n✅ <b>Mutual Growth:</b>\nWe believe in true partnerships where we share risks and rewards. Let's build a successful venture together.\n\n<b>We are interested in joint ventures related to:</b>\n• Regional expansion\n• New financial product development\n• Technology innovation in wealth management",
+      "buttons": [
+        [
+          "Leave Your Contact"
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "content_partnerships": {
+      "title": "<b>Content Partnerships</b>\n\nCollaborate on Educational Content with UTGL\n\nLet's empower audiences with expert insights on wealth management, trust services, and digital assets. 🔥\n\nUTGL's Trust Academy is our go-to resource for mastering trust and wealth management. We are looking for partners to collaborate on creating and distributing high-value educational content.\n\n<b>Collaboration Opportunities:</b>\n\n✅ <b>Joint Webinars & Events:</b>\nCo-host webinars, seminars, or virtual events on topics like estate planning, asset protection, and digital asset investment.\n\n✅ <b>Co-Authored Content:</b>\nCollaborate on research reports, whitepapers, articles, and guides to be shared with our combined audiences.\n\n✅ <b>Expert Interviews:</b>\nFeature our trust and legal experts on your podcast, YouTube channel, or publication, and vice-versa.",
+      "buttons": [
+        [
+          "Leave Your Contact"
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "trust_white_label": {
+      "title": "<b>Trust Company White Label</b>\n\nLaunch Your Own Trust Company with UTGL\n\nEnjoy a seamless, fast-track entry into the trust services sector with our ready-made, white-label trust company solution. 💼\n\nUTGL delivers the infrastructure, tools, and expertise needed to establish your own trust business with low risk and high efficiency. We save you time on the complicated process of creating a new legal entity, opening bank accounts, securing licenses, and building the technological infrastructure.\n\n<b>Key Benefits:</b>\n\n✅ <b>Full Control & Autonomy:</b>\nGain full control over your KYC processes and treasury governance. For family offices, this means eliminating third-party involvement and mitigating risks from external restrictions.\n\n✅ <b>Pre-Established Bank Accounts:</b>\nBypass the challenging process of opening bank accounts for trusts. Our solution comes with pre-established accounts, giving you immediate operational capability.\n\n✅ <b>Complete Support:</b>\nOur team of trust, legal, admin, and compliance experts will ensure your trust company operates seamlessly and provides ongoing support for license renewals.\n\n✅ <b>Your Brand, Our Engine:</b>\nOffer fully branded trust services to your clients while we handle the complex backend operations and regulatory requirements.",
+      "buttons": [
+        [
+          "Leave Your Contact"
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "custom_solutions": {
+      "title": "<b>Custom Solutions</b>\n\nTailored Trust & Financial Solutions for Your Unique Needs\n\nEvery organization has unique challenges and opportunities. UTGL specializes in creating bespoke trust and financial solutions that precisely match your specific requirements.\n\nWhether you're a corporation, family office, financial institution, or high-net-worth individual, we design custom frameworks that align with your goals, risk profile, and operational needs.\n\n<b>Custom Solutions We Offer:</b>\n\n✅ <b>Bespoke Trust Structures:</b> Design specialized trust arrangements for complex asset holdings, multi-jurisdictional wealth, or unique succession planning needs.\n\n✅ <b>Enterprise Trust Solutions:</b> Tailored trust services for corporations managing employee benefits, executive compensation, or corporate treasury assets.\n\n✅ <b>Family Office Setups:</b> Comprehensive family office structures with irrevocable trusts, SPV arrangements, and multi-generational wealth planning.\n\n✅ <b>White-Label Trust Company:</b> Fast-track entry into the trust services sector with our ready-made trust company solution (infrastructure, licensing, banking relationships included).\n\n✅ <b>Hybrid Financial Products:</b> Combine trust services with investment products, insurance, or other financial instruments to create unique value propositions for your clients.\n\n<b>Let us design a solution that works for you.</b>",
+      "buttons": [
+        [
+          "Let us design a solution that works for you."
+        ],
+        [
+          "⬅ Back",
+          "🔝 Main Menu"
+        ]
+      ]
+    },
+    "leave_contact": {
+      "title": "<b>Tell Us About Your Vision:</b> To ensure we connect you with the right team, please share your information below\n\nLeave your contact (link: https://www.utgl.net/resources/contacts)",
+      "buttons": [
         [
           "⬅ Back",
           "🔝 Main Menu"
@@ -96,21 +191,20 @@
       ]
     },
     "admin": {
-      "title": "⚙️ Admin Settings ⚙️",
+      "title": "<b>⚙️ ADMIN CONTROL PANEL ⚙️</b>\n\n<b>📝 Content Management:</b>\n• Edit Welcome Message\n• Edit Menu (titles, buttons)\n• Edit Responses\n• Edit Button Mappings\n\n<b>🏗️ Structure Management:</b>\n• Add New Menu\n• Delete Menu\n\n<b>👥 User Management:</b>\n• Manage Admins\n\n<b>⚙️ System:</b>\n• Reload Configuration\n\n━━━━━━━━━━━━━━━━━━━━━━\n<i>Choose an option below:</i>",
       "buttons": [
         [
           "📝 Edit Welcome Message"
         ],
         [
-          "🔧 Edit Menu"
-        ],
-        [
+          "🔧 Edit Menu",
           "💬 Edit Response"
         ],
         [
-          "➕ Add Menu"
+          "🔗 Edit Button Mapping"
         ],
         [
+          "➕ Add Menu",
           "🗑️ Delete Menu"
         ],
         [
@@ -124,38 +218,30 @@
           "🔝 Main Menu"
         ]
       ]
-    },
-    "service": {
-      "title": "🛠 Our Services",
-      "buttons": [
-        [
-          "⬅ Back",
-          "🔝 Main Menu"
-        ]
-      ]
     }
   },
   "button_mapping": {
-    "💎 Enquiry 💎": "enquiry",
-    "📞 Contact Team 📞": "contact",
-    "🟢 Other 🟢": "other",
-    "❓ FAQs ❓": "faqs",
+    "What is UTGL?": "what_is_utgl",
+    "Trust Plans & Benefits": "trust_plans",
+    "How to Apply": "how_to_apply",
+    "Collaboration Opportunities": "collaboration",
+    "Other Enquiries": "other_enquiries",
+    "Our Trust Plans & Fees": "trust_plans",
+    "Speak to Our Team": "other_enquiries",
+    "Co-Branded Cards": "cobranded_cards",
+    "Technology Integration (API Solutions)": "api_solutions",
+    "Joint Ventures": "joint_ventures",
+    "Content Partnerships": "content_partnerships",
+    "Trust Company White Label": "trust_white_label",
+    "Custom Solutions": "custom_solutions",
+    "Leave Your Contact": "leave_contact",
+    "Let us design a solution that works for you.": "leave_contact",
     "⚙️ Settings": "admin",
     "⬅ Back": "back",
     "🔝 Main Menu": "main",
-    "🛠 Service": "service"
+    "⬅ Back to Main Menu": "main"
   },
   "responses": {
-    "Button inside enquiry 2": "You have selected the button enquiry 2",
-    "Email Support": "📧 Email us at: support@example.com",
-    "Phone Support": "📱 Call us at: +1-234-567-8900",
-    "Live Chat": "💬 Live chat is available on our website!",
-    "Option 1": "You selected Option 1",
-    "Option 2": "You selected Option 2",
-    "How to order?": "To order, simply browse our menu and select your items!",
-    "Payment methods": "We accept credit cards, PayPal, and cash on delivery.",
-    "Shipping info": "We deliver within 3-5 business days.",
-    "🔧 Edit Menu": "🔧 Edit Menu",
-    "utlg info": "welcome to utgl"
+    "⚙️ Settings": "Trust Plans & Benefits"
   }
 }
